@@ -1,0 +1,48 @@
+﻿@using FoodOrderSystem.Models
+
+@model IEnumerable<Food>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <h3>Food Order System</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            @if (ViewBag.Categories == null || ViewBag.Categories.Length == 0)
+            {
+                <span>Nincs hirdetés.</span>
+            }
+            else
+            {
+                <ul>
+                    @* felsoroljuk a városokat *@
+                    @foreach (FoodCategory category in ViewBag.Categories)
+                    {
+                        <li>
+                            @* létrehozunk egy linket minden városra az Index akcióra az azonosító paraméterrel *@
+                            @Html.ActionLink(category.Name, "List", new { categoryId = category.Id })
+                            @* a paramétert egy anonim típusban adjuk meg *@
+                        </li>
+                    }
+                </ul>
+            }
+        </div>
+        <div class="col-md-10">
+            @if (Model == null || Model.Count() == 0)
+            {
+                <span>No food!</span>
+            }
+            @foreach (var food in Model)
+            {
+                <div class="col-xs-12">@food.Name</div>
+            }
+        </div>
+
+    </div>
+</div>
