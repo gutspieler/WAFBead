@@ -16,33 +16,63 @@
         <div class="col-md-2">
             @if (ViewBag.Categories == null || ViewBag.Categories.Length == 0)
             {
-                <span>Nincs hirdetés.</span>
+                <span>No category</span>
             }
             else
             {
-                <ul>
-                    @* felsoroljuk a városokat *@
+                <ul class="nav nav-pills nav-stacked">
+
                     @foreach (FoodCategory category in ViewBag.Categories)
                     {
                         <li>
-                            @* létrehozunk egy linket minden városra az Index akcióra az azonosító paraméterrel *@
+
                             @Html.ActionLink(category.Name, "List", new { categoryId = category.Id })
-                            @* a paramétert egy anonim típusban adjuk meg *@
+
                         </li>
                     }
                 </ul>
             }
         </div>
-        <div class="col-md-10">
-            @if (Model == null || Model.Count() == 0)
-            {
-                <span>No food!</span>
-            }
-            @foreach (var food in Model)
-            {
-                <div class="col-xs-12">@food.Name</div>
-            }
+        <div class="container">
+            <div class="col-md-10">
+                @if (Model == null || Model.Count() == 0)
+                {
+                    <span>No food!</span>
+                }
+                @foreach (var food in Model)
+                {
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="pull-left">
+                                    <h4 class="food_heading">@food.Name    <span class=" label label-default">@food.Price <span>$</span></span></h4>
+                                </div>
+                                <div class="pull-right">
+                                    <img class="basket_icon" src="~/Content/assets/basket.svg" alt="Basket" />
+                                    <span class="quantity_label label label-default">0</span>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="panel-body">
+                            <p>@food.Description</p>
+                            <div class="flex flex-row">
+                                @if (food.Hot)
+                                {
+                                    <div><img class="food_icon" src="~/Content/assets/hot.svg" alt="Hot food" /></div>
+                                }
+                                @if (food.Vega)
+                                {
+                                    <div><img class="food_icon" src="~/Content/assets/broccoli.svg" alt="Vega food" /></div>
+                                }
+                            </div>
+
+                        </div>
+                    </div>
+                }
+            </div>
         </div>
+
 
     </div>
 </div>

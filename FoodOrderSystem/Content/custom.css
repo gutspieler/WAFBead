@@ -1,0 +1,29 @@
+﻿.food_icon {
+    width: 20px !important;
+    height: 20px !important;
+    margin: 10px;
+}
+
+.basket_icon {
+    width: 30px;
+    height: 30px;
+    margin: 10px;
+}
+
+.food_heading {
+    padding: 15px;
+    margin: 0;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-row {
+    flex-direction: row;
+}
+
+.quantity_label{
+    padding:5px 10px;
+    margin-right: 10px;
+}

@@ -26,11 +26,10 @@ namespace FoodOrderSystem.Controllers
 
         public ActionResult List(Int32 categoryId)
         {
-            // ha hibás az azonosító
+           
             if (!_entities.FoodCategory.Any(c => c.Id == categoryId))
-                return HttpNotFound(); // átirányítjuk a nem talált oldalra
+                return HttpNotFound(); 
 
-            // megkeressük a megfelelő város szonosítókat 
             return View("Index", _entities.Food.Include("FoodCategory").Where(b => b.FoodCategoryId == categoryId));
         }
     }
